@@ -63,7 +63,7 @@ $service = new Google_Service_Sheets($client);
         // Prints the names and majors of students in a sample spreadsheet:
         // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
         $spreadsheetId = CONFIGSHEETID;
-        $range = 'configsheet!A2:B';
+        $range = 'configsheet!A2:C';
         $response = $service->spreadsheets_values->get($spreadsheetId, $range);
         $values = $response->getValues();
 
@@ -76,6 +76,7 @@ $service = new Google_Service_Sheets($client);
                 if($logindata['username']==$row[0] && $logindata['password']==$row[1])
                 {
                     $_SESSION['username']=$logindata['username'];
+                    $_SESSION['company_name']=$row[2];
                     date_default_timezone_set("Asia/Kolkata");
                     $_SESSION['start_time']=time();
                     echo "1";

@@ -81,7 +81,7 @@ if (isset($_GET['productid'])) {
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-        <title>DataTables example - Bootstrap 3</title>
+        <title><?php echo $_SESSION['company_name']; ?></title>
         <link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
         <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
         <link rel="stylesheet" type="text/css" href="https://datatables.net/media/css/site-examples.css?_=19472395a2969da78c8a4c707e72123a">
@@ -104,9 +104,14 @@ if (isset($_GET['productid'])) {
 
             <div class="content">
                 <div class="row">
-                    <div class="col-md-10 mrg-top-30">
+                    <div class="col-md-2 mrg-top-30" >
+                        <a  href="logout.php"><button type="button" class="btn">Log Out</button></a>
+                    </div>
+                    <div class="col-md-8 mrg-top-30" style="text-align: center;">
                         <!-- <button type="button" class="btn">Sign In</button> -->
-                        <a  class="btn" href="logout.php">Log Out</a>
+                        
+                        <h4 >Compney Name :- <b><?php echo $_SESSION['company_name']; ?></b></h4>
+                    
                         <!-- <button type="button" class="btn">Upload</button> -->
                         <!-- <button type="button" class="btn">Save</button>  -->
 
