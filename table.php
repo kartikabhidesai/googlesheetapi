@@ -136,6 +136,7 @@ if (empty($dropdownProduct)) {
                         </div> 
                     </div>
                 </div>
+                <div class="table-responsive text-nowrap">
                 <table id="example" class="table table-striped table-bordered" style="width:100%;margin-top: 20px;">
 
                     <thead>
@@ -171,6 +172,7 @@ if (empty($dropdownProduct)) {
                     </tbody>
 
                 </table>
+            </div>
             </div>
 
         </div>
@@ -353,11 +355,11 @@ if (empty($dropdownProduct)) {
                             if (result == 1)
                             {
                                 $('#editModal').modal('hide');
-                                alert('Update Successfully');
+                                // alert('Update Successfully');
                                 // window.location='table.php';
                             } else {
                                 $('#editModal').modal('hide');
-                                alert('Update faild');
+                                // alert('Update faild');
                                 // location.reload();
                             }
                         }

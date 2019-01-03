@@ -115,10 +115,10 @@ span.psw {
                     success:function(result){
                         if(result==1)
                         {
-                            alert("Login Sucessfully");
+                            // alert("Login Sucessfully");
                             window.location='table.php';
                         }else{
-                           alert('Login faild');
+                           // alert('Login faild');
                            // location.reload();
                         }
 
