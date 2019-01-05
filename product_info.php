@@ -54,7 +54,7 @@ if (isset($_POST['productid']) && isset($_POST['rowid'])) {
 
 //get product title details
 
-    $range = 'Sheet1!A1:AB';
+    $range = 'Sheet1!A1:AZ';
     $response = $service->spreadsheets_values->get($spreadsheetIdOfProduct, $range);
     $values = $response->getValues();
     foreach ($values as $rowK => $row) {
@@ -86,7 +86,7 @@ if (isset($_POST['productid']) && isset($_POST['rowid'])) {
 
 
     $rowid = $rowid + 1;
-    $range = 'Sheet1!A' . $rowid . ':AB';
+    $range = 'Sheet1!A' . $rowid . ':AZ';
     $response = $service->spreadsheets_values->get($spreadsheetIdOfProduct, $range);
     $values = $response->getValues();
     foreach ($values as $rowK => $row) {
@@ -106,7 +106,12 @@ if (isset($_POST['productid']) && isset($_POST['rowid'])) {
     foreach ($data['product_details'] as $product) {
         if ($i == 0) {
             for ($count = 0; $count < $totalCol; $count++) {
-                $td .= '<tr><td>:- ' . $product[$count] . '</td></tr>';
+                if(isset($product[$count])){
+                    $td .= '<tr><td>:- ' . $product[$count] . '</td></tr>';
+                }else{
+                    $td .= '<tr><td>:-  ------</td></tr>';
+                }
+                
             }
             $i++;
         }
