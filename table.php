@@ -163,8 +163,8 @@ if (isset($_GET['productid'])) {
                         </div> 
                          <div class="form-group">
                                 Show/Close : 
-                              <label for="status_yes"><input type="radio" name="status_check" onClick="choose('yes')"  id="status_yes" >Yes</label> 
-                              <label  for="status_no"><input type="radio" name="status_check" onClick="choose('no')" id="status_no">No</label>
+                              <label for="status_yes"><input type="radio" name="status_check" onClick="choose('yes')" <?php if($_GET['status']=='yes'){ echo 'checked'; } ?> id="status_yes" >Yes</label> 
+                              <label  for="status_no"><input type="radio" name="status_check" onClick="choose('no')" <?php if($_GET['status']=='no'){ echo 'checked'; } ?> id="status_no">No</label>
                             
                          </div>
                     </div>
@@ -242,7 +242,7 @@ if (isset($_GET['productid'])) {
 
         <!-- view model -->
         <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style="min-width: 95%;">
 
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -273,7 +273,7 @@ if (isset($_GET['productid'])) {
 
         <!-- update model -->
         <div class="modal fade" id="editModal" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog" style="min-width: 95%;">
 
                 <!-- Modal content-->
                 <div class="modal-content">
