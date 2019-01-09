@@ -115,7 +115,7 @@ if (isset($_GET['productid'])) {
                     <div class="col-md-2 mrg-top-30" >
                         <a  href="logout.php"><button type="button" class="btn">Log Out</button></a>
                     </div>
-                    <div class="col-md-8 mrg-top-30" style="text-align: center;">
+                    <div class="col-md-7 mrg-top-30" style="text-align: center;">
                         <!-- <button type="button" class="btn">Sign In</button> -->
                         
                         <h4 >Compney Name :- <b><?php echo $_SESSION['company_name']; ?></b></h4>
@@ -124,7 +124,7 @@ if (isset($_GET['productid'])) {
                         <!-- <button type="button" class="btn">Save</button>  -->
 
                     </div>
-                    <div class="col-md-2 mrg-top-30">
+                    <div class="col-md-3 mrg-top-30">
                             <?php if (isset($_GET['productid'])) { ?>
                             <input type="hidden" name="productid" id="productid" value="<?php echo $_GET['productid']; ?>">
                             <?php } ?>
@@ -147,6 +147,12 @@ if (isset($_GET['productid'])) {
                                 ?>
                             </select>
                         </div> 
+                         <div class="form-group">
+                                Show/Close : 
+                              <label for="status_yes"><input type="radio" name="status_check" onClick="choose('yes')"  id="status_yes" >Yes</label> 
+                              <label  for="status_no"><input type="radio" name="status_check" onClick="choose('no')" id="status_no">No</label>
+                            
+                         </div>
                     </div>
                 </div>
                 <div class="table-responsive text-nowrap">
@@ -170,17 +176,30 @@ if (isset($_GET['productid'])) {
                                 <tbody>
                                     <?php
                                 } else {
-                                    echo $td = '<tr>';
-                                    for ($count = 0; $count < $totalCol; $count++) {
-                                        if(isset($product[$count])){
-                                             echo $td = '<td>' . $product[$count] . '</td>';
-                                        }else{
-                                            echo $td = '<td></td>';
+                                    if($_GET['status']=='Closed'){
+                                        echo $td = '<tr>';
+                                        for ($count = 0; $count < $totalCol; $count++) {
+                                            if(isset($product[$count])){
+                                                 echo $td = '<td>' . $product[$count] . '</td>';
+                                            }else{
+                                                echo $td = '<td></td>';
+                                            }
+                                           
                                         }
-                                       
+                                        echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
+                                            </tr>';
+                                    }elseif(!isset($_GET['status'])){
+                                        echo $td = '<tr>';
+                                        for ($count = 0; $count < $totalCol; $count++) {
+                                            if(isset($product[$count])){
+                                                 echo $td = '<td>' . $product[$count] . '</td>';
+                                            }else{
+                                                echo $td = '<td></td>';
+                                            }                                           
+                                        }
+                                        echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
+                                            </tr>';
                                     }
-                                    echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
-                                        </tr>';
                                 }
                                 $i++;
                             }
@@ -331,7 +350,23 @@ if (isset($_GET['productid'])) {
         </script>
 <!-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> -->
         <script>
+            
+function choose(choice){
+    var productid=$('#productid').val();
+    if (choice == 'yes') {
+        status= 'yes';
+    }
+    else{
+        status='no';
+    }
+     window.location='table.php?productid='+productid+'&status='+status;
+}
 
+
+function test(click){
+    alert(chanceoflive);
+    alert(localStorage.chanceoflive);
+}
         </script>
         <script>
             $('#product_list').on('change', function () {
