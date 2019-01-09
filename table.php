@@ -57,6 +57,9 @@ if (isset($_GET['productid'])) {
     foreach ($a as $r) {
         $key[] = array_search($r, $sheetCallomArray);
     }
+    
+    $statusKey = array_search($statusCal, $sheetCallomArray);
+    
     // $keyA=explode(",",$key);
     // product wish data
     // exit;
@@ -71,18 +74,29 @@ if (isset($_GET['productid'])) {
     $values = $response->getValues();
     
     foreach ($values as $rowK => $row) {
-        foreach ($row as $rowKey => $rowCal) {
+        if($row[$statusKey] == 'Closed' && isset($_GET['status']) && $_GET['status']=='yes'){
+//            foreach ($row as $rowKey => $rowCal) {
+//
+//                if (in_array($rowKey, $key)) {
+//                    // echo $rowKey;
+//                    $data['product_details'][$rowK][] = $row[$rowKey];
+//                }
+//                # code...
+//            }
+        }else{
+            foreach ($row as $rowKey => $rowCal) {
 
-            if (in_array($rowKey, $key)) {
-                // echo $rowKey;
-                $data['product_details'][$rowK][] = $row[$rowKey];
+                if (in_array($rowKey, $key)) {
+                    // echo $rowKey;
+                    $data['product_details'][$rowK][] = $row[$rowKey];
+                }
+                # code...
             }
-            # code...
         }
     }
     $result = array_unique($data);
 }
- //print_r($result);exit;
+ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -176,8 +190,31 @@ if (isset($_GET['productid'])) {
                                 <tbody>
                                     <?php
                                 } else {
-                                    if($_GET['status']=='Closed'){
-                                        echo $td = '<tr>';
+//                                    if($_GET['status']=='yes'){
+//                                        echo $td = '<tr>';
+//                                        for ($count = 0; $count < $totalCol; $count++) {
+//                                            if(isset($product[$count])){
+//                                                 echo $td = '<td>' . $product[$count] . '</td>';
+//                                            }else{
+//                                                echo $td = '<td></td>';
+//                                            }
+//                                           
+//                                        }
+//                                        echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
+//                                            </tr>';
+//                                    }elseif(!isset($_GET['status'])){
+//                                        echo $td = '<tr>';
+//                                        for ($count = 0; $count < $totalCol; $count++) {
+//                                            if(isset($product[$count])){
+//                                                 echo $td = '<td>' . $product[$count] . '</td>';
+//                                            }else{
+//                                                echo $td = '<td></td>';
+//                                            }                                           
+//                                        }
+//                                        echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
+//                                            </tr>';
+//                                    }
+                                    echo $td = '<tr>';
                                         for ($count = 0; $count < $totalCol; $count++) {
                                             if(isset($product[$count])){
                                                  echo $td = '<td>' . $product[$count] . '</td>';
@@ -188,18 +225,6 @@ if (isset($_GET['productid'])) {
                                         }
                                         echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
                                             </tr>';
-                                    }elseif(!isset($_GET['status'])){
-                                        echo $td = '<tr>';
-                                        for ($count = 0; $count < $totalCol; $count++) {
-                                            if(isset($product[$count])){
-                                                 echo $td = '<td>' . $product[$count] . '</td>';
-                                            }else{
-                                                echo $td = '<td></td>';
-                                            }                                           
-                                        }
-                                        echo $td = '<td><a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> </td>
-                                            </tr>';
-                                    }
                                 }
                                 $i++;
                             }
