@@ -128,6 +128,7 @@ if (isset($_GET['productid'])) {
                 <div class="row">
                     <div class="col-md-2 mrg-top-30" >
                         <a  href="logout.php"><button type="button" class="btn">Log Out</button></a>
+                        <a id="refresh" href="javascript:;"><button type="button" class="btn">Refresh</button></a>
                     </div>
                     <div class="col-md-7 mrg-top-30" style="text-align: center;">
                         <!-- <button type="button" class="btn">Sign In</button> -->
@@ -162,9 +163,9 @@ if (isset($_GET['productid'])) {
                             </select>
                         </div> 
                          <div class="form-group">
-                                Show/Close : 
-                              <label for="status_yes"><input type="radio" name="status_check" onClick="choose('yes')" <?php if($_GET['status']=='yes'){ echo 'checked'; } ?> id="status_yes" >Yes</label> 
-                              <label  for="status_no"><input type="radio" name="status_check" onClick="choose('no')" <?php if($_GET['status']=='no'){ echo 'checked'; } ?> id="status_no">No</label>
+                                Show Close : 
+                              <label for="status_yes"><input type="radio" name="status_check" onClick="choose('yes')" <?php if(isset($_GET['status']) && ($_GET['status']=='yes')){ echo 'checked'; } ?> id="status_yes" >No</label> 
+                              <label  for="status_no"><input type="radio" name="status_check" onClick="choose('no')" <?php if(isset($_GET['status']) && ($_GET['status']=='no')){ echo 'checked'; } ?> id="status_no">Yes</label>
                             
                          </div>
                     </div>
@@ -368,6 +369,7 @@ if (isset($_GET['productid'])) {
             $(document).ready(function () {
                 $('#example').DataTable({
                     order: [],
+                    "bStateSave": true,
                     columnDefs: [{orderable: false}]
                 });
             });
@@ -398,6 +400,11 @@ function test(click){
                 var dataId = this.value;
 
                 window.location = 'table.php?productid=' + dataId;
+            });
+            $('#refresh').on('click', function () {
+               
+
+                window.location.reload();
             });
         </script>
 
