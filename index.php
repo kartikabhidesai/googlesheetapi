@@ -116,7 +116,7 @@ span.psw {
                         if(result==1)
                         {
                             // alert("Login Sucessfully");
-                            window.location='table.php';
+                            window.location='table1.php';
                         }else{
                            // alert('Login faild');
                            // location.reload();
