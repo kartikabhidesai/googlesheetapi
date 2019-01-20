@@ -421,6 +421,8 @@ function test(click){
 //            });
 ////                window.location.reload();
             });
+            
+             setInterval(function(){ $('#refresh').trigger('click'); }, 30000);
         </script>
 
 

@@ -69,10 +69,10 @@ if (isset($_GET['productid'])) {
     // Prints the names and majors of students in a sample spreadsheet:
     // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
     // $spreadsheetId = '1aloacehiHK0ookERRf4UbrGR0YkUodRAx6sHO1YJrQw';
-    $range = 'Sheet1!A1:AZ';
+    $range = 'Sheet1!A2:AZ';
     $response = $service->spreadsheets_values->get($spreadsheetIdOfProduct, $range);
     $values = $response->getValues();
-    $i =0;
+    $i =1;
     foreach ($values as $rowK => $row) {
         
         
@@ -108,9 +108,9 @@ if (isset($_GET['productid'])) {
             }
             $count3 = count($key) ;
             $data['product_details'][$rowK][$count3] = '<a class="btn" href="javascript:;" data-toggle="modal" data-target="#myModal" id="' . $i . '" onClick="popupwindow(this.id)"  >View</a> <a class="btn" href="javascript:;" data-toggle="modal" data-target="#editModal" id="' . $i . '" onclick="editwindow(this.id)"  >Edit</a> ';
-            $i++;
+           
         }
-      
+       $i++;
     }
     $result = array_unique($data);
     $result1['data'] = $result['product_details'];
